@@ -1,0 +1,106 @@
+swagger: "2.0"
+info:
+  description: "This is a service to generate the Farmobile gps report."
+  version: "1.0.0"
+  title: "Farmobile GPS Report Service"
+  termsOfService: ""
+  contact:
+    email: "jpg013@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+basePath: "/"
+schemes:
+- "http"
+
+paths:
+  /health_check:
+    get:
+      description: "Check the health status of the service."
+      operationId: "Service Health Check"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: OK
+          properties:
+            status:
+              type: string
+        "400":
+          description: Bad Request.
+          schema:
+            $ref: "#/definitions/ErrorModel"
+        "500":
+          description: Server Error.
+          schema:
+            $ref: "#/definitions/ErrorModel"
+  
+  /get_gps_report:
+    post:
+      description: "Returns GPS report data model."
+      operationId: "Generate GPS Report"
+      produces:
+        - "application/json"
+      responses:
+        "200":
+          description: "GPS Report Response"
+          schema:
+            $ref: "#/definitions/GPSReport"
+        "400":
+          description: Bad Request.
+          schema:
+            $ref: "#/definitions/ErrorModel"
+        "500":
+          description: Server Error.
+          schema:
+            $ref: "#/definitions/ErrorModel"
+            
+definitions:
+  ErrorModel:
+    type: "object"
+    required:
+      - "code"
+      - "message"
+    properties:
+      code:
+        type: "integer"
+        format: "int32"
+      message:
+        type: "string"
+  
+  GPSReport:
+    type: "object"
+    required:
+      - total_gps_messages,
+      - total_can_messages,
+      - unique_can_msg_count,
+      - total_run_time,
+      - average_can_messages_per_second,
+      - average_can_messages_per_gps_message,
+      - first_ts_with_most_can_messages,
+      - first_ts_with_least_can_messages
+    properties:
+      total_gps_messages:
+        type: number
+      total_can_messages:
+        type: number
+      unique_can_msg_count:
+        type: number
+      total_run_time:
+        type: number
+      average_can_messages_per_second:
+        type: number
+      average_can_messages_per_gps_message:
+        type: number
+      first_ts_with_most_can_messages:
+        type: date-time
+      first_ts_with_least_can_messages:
+        type: date-time
+
+                
+      
+            
+          
+          
+                  
+      

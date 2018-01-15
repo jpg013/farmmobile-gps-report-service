@@ -1,0 +1,20 @@
+{
+    "parserOptions": {
+        "ecmaVersion": 8,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "rules": {
+      "no-console": [
+        "warn",
+        { allow: ["warn", "error"] }
+      ],
+      "quotes": [
+          2,
+          "single",
+          { "allowTemplateLiterals": true }
+      ]
+    }
+}
